@@ -164,12 +164,12 @@ class EditCostumerService
                         $pay->payment_description   = 'À VISTA | CHEQUE';
                     break;
 
-                    case 'debitcard':
+                    case 'debitCard':
                         $pay->payment_code          = 23;
                         $pay->payment_description   = 'À VISTA | CARTÃO DE DÉBITO';
                     break;
 
-                    case 'creditcard':
+                    case 'creditCard':
                         $pay->payment_code          = 24;
                         $pay->payment_description   = 'À VISTA | CARTÃO DE CRÉDITO';
                     break;

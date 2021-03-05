@@ -88,6 +88,13 @@ class CostumerController extends Controller
         $edit = $editCostumerService->handleEditCostumer($request, $request->params['c_id'], $company_type[0]);
 
         
-        return $edit;
+        return $edit; 
+    }
+
+    public function paymentDefinition(Request $request, CostumerService $costumerService)
+    {
+        $payment = $costumerService->handlePaymentDefinition($request->params);
+
+        return $payment;
     }
 }

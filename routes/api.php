@@ -48,6 +48,7 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::post('/costumer/le/create',[CostumerController::class, 'createLegalEntity']);
     Route::post('/costumer/np/create',[CostumerController::class, 'createNaturalPerson']);
     Route::get('/costumer/le/list',[CostumerController::class, 'listLegalEntities']);
+    Route::post('costumer/payment/', [CostumerController::class, 'paymentDefinition']);
     });
 
 Route::post('/login',[UserController::class, 'login']);

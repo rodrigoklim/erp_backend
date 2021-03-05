@@ -17,4 +17,9 @@ class Products extends Model
     protected $fillable = [
         'product', 'classification', 'category', 'unity', 'ean', 'max_price', 'ncm', 'cest' , 'csosn', 'operation', 'weight', 'load_code'
     ];
+
+    public function getProductcDescriptionAttribute()
+    {
+        return "{$this->category} {$this->product}";
+    }
 }

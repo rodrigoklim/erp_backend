@@ -18,7 +18,6 @@ class CreateAccountsTable extends Migration
             $table->timestamps();
             $table->string('c_id')->unique();
             $table->string('nf');
-            $table->string('nf_obs')->nullable();
             $table->string('payment_method');
             $table->string('sales_comission');
             $table->string('financial_flag')->nullable();

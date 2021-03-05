@@ -106,6 +106,75 @@ class CostumerService
         }
     }
 
+    public function handlePaymentDefinition($data)
+    {
+        $pay = [];
+        switch($data['term']){
+            case 'anticipated':
+                $pay['payment_code']                    = 1;
+                $pay['account']                         = $data['account'];
+                $pay['payment_description']             = 'ANTECIPADO | TRANSFERÊNCIA';
+            break;
+
+            case 'cashPay':
+                switch($data['method']){
+                    case 'cash':
+                        $pay['payment_code']            = 21;
+                        $pay['payment_description']     = 'À VISTA | DINHEIRO';
+                    break;
+
+                    case 'check':
+                        $pay['payment_code']            = 22;
+                        $pay['payment_description']     = 'À VISTA | CHEQUE';
+                    break;
+
+                    case 'debitCard':
+                        $pay['payment_code']            = 23;
+                        $pay['payment_description']     = 'À VISTA | CARTÃO DE DÉBITO';
+                    break;
+
+                    case 'creditCard':
+                        $pay['payment_code']            = 24;
+                        $pay['payment_description']     = 'À VISTA | CARTÃO DE CRÉDITO';
+                    break;
+                }
+            break;
+
+            case 'credit':
+                switch($data['method']){
+                    case 'bankSlip':
+                        $pay['payment_code']            = 31;
+                        $pay['term']                    =  collect($data['methodTerm'])->implode(',');
+                        $pay['payment_description']     = 'À PRAZO | BOLETO BANCÁRIO';
+                    break;
+
+                    case 'check':
+                        $pay['payment_code']            = 32;
+                        $pay['term']                    = collect($data['methodTerm'])->implode(',');
+                        $pay['payment_description']     = 'À PRAZO | CHEQUE';
+                    break;
+
+                    case 'bankTransfer':
+                        $pay['payment_code']            = 33;
+                        $pay['term']                    = collect($data['methodTerm'])->implode(',');
+                        $pay['account']                 = $data['account'];
+                        $pay['contract']                = $data['contract'];
+                        $pay['payment_description']     = 'À PRAZO | TRANSFERÊNCIA';
+                    break;
+                    
+                    case 'monthlyPayment':
+                        $pay['payment_code']            = 34;
+                        $pay['close_date']              = $data['account'];
+                        $pay['payment_date']            = $data['contract'];
+                        $pay['payment_description']     = 'À PRAZO | PÓS-PAGO';
+                    break;
+                }
+            break;
+        }
+        
+        return $pay;
+    }
+
     private function handleNaturalPersonregister($data)
     {
         $person = new NaturalPerson();
@@ -252,12 +321,12 @@ class CostumerService
                         $pay->payment_description   = 'À VISTA | CHEQUE';
                     break;
 
-                    case 'debitcard':
+                    case 'debitCard':
                         $pay->payment_code          = 23;
                         $pay->payment_description   = 'À VISTA | CARTÃO DE DÉBITO';
                     break;
 
-                    case 'creditcard':
+                    case 'creditCard':
                         $pay->payment_code          = 24;
                         $pay->payment_description   = 'À VISTA | CARTÃO DE CRÉDITO';
                     break;
