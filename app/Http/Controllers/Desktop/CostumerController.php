@@ -61,21 +61,20 @@ class CostumerController extends Controller
                 'company_name'      => $company->company_name,
                 'contact'           => $company->contact,
                 'zone'              => $company->address[0]->zone,
-                'register'          => $company->with(['address', 'payMethod', 'account', 'products'])->get()
+                'register'          => $company->with(['address', 'payMethod', 'account', 'products', 'observations'])->get()
             ];
         }
         
         $people = NaturalPerson::get();
 
         foreach($people as $person){
-
             $costumers[] = [
                 'c_id'              => $person->c_id,
                 'register_number'   => $person->cpf,
                 'company_name'      => $person->company_name,
                 'contact'           => $person->name,
                 'zone'              => $person->address[0]->zone,
-                'register'          => $person->with(['address', 'payMethod', 'account', 'products'])->get()
+                'register'          => $person->with(['address', 'payMethod', 'account', 'products', 'observations'])->get()
             ];
         }
         return $costumers;

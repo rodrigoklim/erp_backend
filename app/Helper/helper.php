@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Products;
+
 function clearMoneyMask($value){
     $valor = explode(' ', $value);
     
@@ -38,4 +40,38 @@ function clearMoneyMask($value){
     }
 
     return false;
+  }
+
+  function priceComparison($product_id, $first, $second){
+    
+    $max_price = Products::find($product_id);
+    return $max_price;
+    $second = clearMoneyMask($second);
+
+    $valueB = floatval($second/$max_price);
+
+    if($first === $valueB){
+      
+      return true;
+
+    } else {
+
+      $response = [
+        'status'  => false,
+        'price'   => $valueB
+      ];
+      
+      return $response;
+    }
+
+  }
+
+  function priceCheck($product_id, $second){
+    
+    $product = Products::find($product_id);
+    $second = clearMoneyMask($second);
+
+    $valueB = ($second/$product->max_price);
+
+    return $valueB;
   }

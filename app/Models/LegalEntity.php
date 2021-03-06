@@ -34,4 +34,14 @@ class LegalEntity extends Model
     {
         return $this->hasMany(CostumerProducts::class, 'c_id', 'c_id');
     }
+
+    public function observations()
+    {
+        return $this->hasMany(OrderObservation::class, 'c_id', 'c_id');
+    }
+
+    public function preSells()
+    {
+        return $this->hasMany(PreSell::class, 'c_id', 'c_id');
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Desktop\CostumerController;
+use App\Http\Controllers\Desktop\PreSellController;
 use App\Http\Controllers\Desktop\ProductController;
 use App\Http\Controllers\Desktop\TaskController;
 use App\Http\Controllers\Desktop\UserController;
@@ -49,6 +50,10 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::post('/costumer/np/create',[CostumerController::class, 'createNaturalPerson']);
     Route::get('/costumer/le/list',[CostumerController::class, 'listLegalEntities']);
     Route::post('costumer/payment/', [CostumerController::class, 'paymentDefinition']);
-    });
 
+    // PreSell
+    Route::post('presell/create/observation', [PreSellController::class, 'createObservation']);
+    Route::post('presell/create', [PreSellController::class, 'createPreSell']);
+    });
+    
 Route::post('/login',[UserController::class, 'login']);
