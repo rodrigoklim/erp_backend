@@ -21,7 +21,7 @@ class Address extends Model
 
     public function costumerNp()
     {
-        return $this->belongsTo('NaturalPerson', 'c_id');
+        return $this->belongsTo(NaturalPerson::class, 'c_id', 'c_id');
     }
 
 }

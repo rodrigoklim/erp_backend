@@ -17,11 +17,16 @@ class PreSell extends Model
     status = 0 - not on route
     status = 1 - on route
     status = 2 - super auth
+    status = 3 - done
     */
 
     protected $fillable =[
         'c_id', 'invoice_option', 'status', 'zone', 'delivery_period', 'delivery_address', 'delivery_date', 'invoice_obs',
         'driver_obs', 'pay_code', 'pay_term', 'pay_contract', 'pay_commitment_number', 'authorization'
+    ];
+
+    protected $casts = [
+        'delivery_date' => 'date',
     ];
     
     public function setZoneAttribute($value)

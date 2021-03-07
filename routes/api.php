@@ -3,6 +3,7 @@
 use App\Http\Controllers\Desktop\CostumerController;
 use App\Http\Controllers\Desktop\PreSellController;
 use App\Http\Controllers\Desktop\ProductController;
+use App\Http\Controllers\Desktop\RouteController;
 use App\Http\Controllers\Desktop\TaskController;
 use App\Http\Controllers\Desktop\UserController;
 use App\Http\Controllers\Desktop\VehiclesController;
@@ -54,6 +55,9 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     // PreSell
     Route::post('presell/create/observation', [PreSellController::class, 'createObservation']);
     Route::post('presell/create', [PreSellController::class, 'createPreSell']);
+
+    // Routes
+    Route::get('/route/list',[RouteController::class, 'showRoutes']);
     });
     
 Route::post('/login',[UserController::class, 'login']);

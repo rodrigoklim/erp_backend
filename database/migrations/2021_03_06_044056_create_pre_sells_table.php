@@ -22,7 +22,7 @@ class CreatePreSellsTable extends Migration
             $table->string('zone');
             $table->string('delivery_period');
             $table->string('delivery_address');
-            $table->string('delivery_date');
+            $table->date('delivery_date');
             $table->string('invoice_obs')->nullable();
             $table->string('driver_obs')->nullable();
             $table->string('pay_code');

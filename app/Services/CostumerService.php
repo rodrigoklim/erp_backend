@@ -426,9 +426,15 @@ class CostumerService
             $newProduct->c_id           = $c_id;
             $newProduct->products_id    = $product['id'];
             $newProduct->price          = $value;
-            $newProduct->interval       = $product['interval'];
-            $newProduct->exact_day      = $product['exactDay'];
-
+            
+            if($product['interval'] !== '-'){
+                $newProduct->interval       = $product['interval'];
+            }
+            
+            if($product['exactDay'] !== '-'){
+                $newProduct->exact_day      = $product['exactDay'];
+            }
+            
             $newProduct->save();
 
         }

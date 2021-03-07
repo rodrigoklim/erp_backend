@@ -44,4 +44,14 @@ class LegalEntity extends Model
     {
         return $this->hasMany(PreSell::class, 'c_id', 'c_id');
     }
+
+    public function setCompanyNameAttribute($value)
+    {
+        $this->attributes['company_name'] = strtoupper($value);
+    }
+
+    public function getCompanyNameAttribute($value)
+    {
+        return strtoupper($value);
+    }
 }
